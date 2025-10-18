@@ -13,9 +13,11 @@ public class ARPServer{
 
             while (true) {
                 Socket socket = server.accept();
+                System.out.println("Client Connected Successfully");
                 DataInputStream dis = new DataInputStream(socket.getInputStream());
                 DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
                 String ip = dis.readUTF();
+                System.out.println("Requesting IP: "+ip);
                 String mac = arpTable.getOrDefault(ip, "Not Found");
                 dos.writeUTF(mac);
                 dis.close();
